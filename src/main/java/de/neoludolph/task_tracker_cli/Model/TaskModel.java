@@ -1,3 +1,5 @@
+package de.neoludolph.task_tracker_cli.Model;
+
 import java.time.LocalDateTime;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import java.util.concurrent.atomic.AtomicLong;

@@ -1,3 +1,7 @@
+package de.neoludolph.task_tracker_cli.Service;
+
+import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
+
 public class TaskService {
 
     public void add() {

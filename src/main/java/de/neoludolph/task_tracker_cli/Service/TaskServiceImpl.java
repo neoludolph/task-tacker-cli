@@ -5,12 +5,17 @@ import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
 
 public class TaskServiceImpl implements TaskService {
 
+    private final TaskRepository taskRepository;
+
     public TaskServiceImpl(TaskRepository taskRepository) {
+        this.taskRepository = taskRepository;
     }
 
     @Override
     public void add(String description) {
-
+        taskRepository.loadTasksJson();
+        // Logik
+        taskRepository.saveTasksJson();
     }
 
     @Override
@@ -24,7 +29,11 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void markAs(String markAs) {
+    public void markInProgress(String mark, long id) {
+
+    }
+    @Override
+    public void markDone(String mark, long id) {
 
     }
 

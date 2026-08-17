@@ -6,7 +6,8 @@ public interface TaskService {
     void add(String description);
     void update(TaskModel task, long id, String description);
     void delete(long id);
-    void markAs(String markAs);
+    void markInProgress(String mark, long id);
+    void markDone(String mark, long id);
     void listAll();
     void listDone();
     void listToDo();

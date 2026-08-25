@@ -14,7 +14,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void add(String description) {
         taskRepository.loadTasksJson();
-        // Logik
+
         taskRepository.saveTasksJson();
     }
 
@@ -32,6 +32,7 @@ public class TaskServiceImpl implements TaskService {
     public void markInProgress(String mark, long id) {
 
     }
+
     @Override
     public void markDone(String mark, long id) {
 

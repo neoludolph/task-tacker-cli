@@ -29,54 +29,6 @@ public class TaskModel {
         this.status = Status.TODO;
     }
 
-    public String toJson() {
-        return """
-                {
-                "id" = "%d",
-                "description"= "%s",
-                "createdAt" = "%s",
-                "updatedAt" = "%s",
-                "status" = "%s"
-                }
-                """.formatted(this.id, this.description, this.createdAt, this.updatedAt, this.status);
-    }
-
-//    Beispiel
-//    import java.io.IOException;
-//    import java.nio.file.Files;
-//    import java.nio.file.Paths;
-//
-//    // Ihre bestehende Objekt-Klasse
-//    class User {
-//        String name = "Max";
-//        int alter = 30;
-//        boolean istAktiv = true;
-//    }
-//
-//    public class JsonOhneLib {
-//        public static void main(String[] args) {
-//            // 1. Objekt erstellen
-//            User user = new User();
-//
-//            // 2. Felder des Objekts direkt in den Text Block einsetzen
-//            String jsonString = """
-//            {
-//                "name": "%s",
-//                "alter": %d,
-//                "istAktiv": %b
-//            }
-//            """.formatted(user.name, user.alter, user.istAktiv);
-//
-//            // 3. Speichern
-//            try {
-//                Files.writeString(Paths.get("output.json"), jsonString);
-//                System.out.println("Erfolgreich gespeichert!");
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-//        }
-//    }
-
     public long getId() {
         return id;
     }

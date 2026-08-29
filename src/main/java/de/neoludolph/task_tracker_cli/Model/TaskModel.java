@@ -29,7 +29,7 @@ public class TaskModel {
         this.status = Status.TODO;
     }
 
-    public String toString() {
+    public String toJson() {
         return "{\"id\": " + this.id + ", " +
                 "\"description\": " + this.description + ", " +
                 "\"createdAt\": " + this.createdAt + ", " +

@@ -29,6 +29,14 @@ public class TaskModel {
         this.status = Status.TODO;
     }
 
+    public String toString() {
+        return "{\"id\": " + this.id + ", " +
+                "\"description\": " + this.description + ", " +
+                "\"createdAt\": " + this.createdAt + ", " +
+                "\"updatedAt\": " + this.updatedAt + ", " +
+                "\"status\": " + this.status + "}";
+    }
+
     public long getId() {
         return id;
     }

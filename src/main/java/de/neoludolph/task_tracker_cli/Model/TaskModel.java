@@ -30,11 +30,15 @@ public class TaskModel {
     }
 
     public String toJson() {
-        return "{\"id\": " + this.id + ", " +
-                "\"description\": \"" + this.description + "\", " +
-                "\"createdAt\": \"" + this.createdAt + "\", " +
-                "\"updatedAt\": \"" + this.updatedAt + "\", " +
-                "\"status\": \"" + this.status + "\"}";
+        return """
+                {
+                    "id": %d,
+                    "description": "%s",
+                    "createdAt": "%s",
+                    "updatedAt": "%s",
+                    "status": "%s"
+                }
+                """.formatted(this.id, this.description, this.createdAt, this.updatedAt, this.status);
     }
 
     public long getId() {

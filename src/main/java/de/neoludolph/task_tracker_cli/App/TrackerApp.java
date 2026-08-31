@@ -1,7 +1,6 @@
 package de.neoludolph.task_tracker_cli.App;
 
 import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
-import de.neoludolph.task_tracker_cli.Service.TaskService;
 import de.neoludolph.task_tracker_cli.Service.TaskServiceImpl;
 
 public class TrackerApp {

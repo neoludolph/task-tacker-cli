@@ -13,9 +13,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void add(String description) {
-//        taskRepository.loadTasksJson();
 
-        taskRepository.saveTasksJson();
     }
 
     @Override

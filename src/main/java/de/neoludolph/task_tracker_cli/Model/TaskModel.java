@@ -12,7 +12,6 @@ public class TaskModel {
         IN_PROGRESS
     }
 
-    private static final AtomicLong NEXT_ID = new AtomicLong(0);
     private long id;
     private String description;
     @JsonFormat(pattern = "dd.MM.yy")
@@ -22,7 +21,6 @@ public class TaskModel {
     private Status status;
 
     public TaskModel(String description) {
-        this.id = NEXT_ID.incrementAndGet();
         this.description = description;
         this.createdAt = LocalDateTime.now();
         this.updatedAt = LocalDateTime.now();
@@ -40,12 +38,6 @@ public class TaskModel {
                     }\
                 """.formatted(this.id, this.description, this.createdAt, this.updatedAt, this.status);
     }
-
-//    public String toJson() {
-//        return "\t{\n\t\"id\": "
-//                + this.id
-//                + ""
-//    }
 
     public long getId() {
         return id;

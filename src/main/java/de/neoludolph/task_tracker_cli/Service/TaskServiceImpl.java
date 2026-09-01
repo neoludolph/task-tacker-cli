@@ -3,6 +3,9 @@ package de.neoludolph.task_tracker_cli.Service;
 import de.neoludolph.task_tracker_cli.Model.TaskModel;
 import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
 
+import java.io.IOException;
+import java.util.ArrayList;
+
 public class TaskServiceImpl implements TaskService {
 
     private final TaskRepository taskRepository;
@@ -13,7 +16,12 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void add(String description) {
-
+        TaskModel taskModel = new TaskModel(description);
+        try {
+            taskRepository.saveTasksJson(taskModel);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

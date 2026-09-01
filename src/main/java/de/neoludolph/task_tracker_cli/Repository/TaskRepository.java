@@ -5,7 +5,6 @@ import de.neoludolph.task_tracker_cli.Model.TaskModel;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.nio.file.Paths;
 
 public class TaskRepository {
     public String loadTasksJson() throws IOException {
@@ -13,12 +12,6 @@ public class TaskRepository {
         if (Files.notExists(path)) {
             Files.createFile(path);
             String brackets = "[\n]";
-            // Alternative notation
-//            String brackets = """
-//                    {
-//
-//                    }
-//                    """;
             Files.writeString(path, brackets);
         }
         return Files.readString(path);

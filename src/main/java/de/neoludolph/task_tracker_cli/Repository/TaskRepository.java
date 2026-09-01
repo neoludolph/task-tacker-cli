@@ -41,7 +41,6 @@ public class TaskRepository {
             String json = tasksJson.substring(0, position - 1)
                     + ","
                     + "\n"
-                    + "\t"
                     + newTask
                     + "\n"
                     + tasksJson.substring(position);

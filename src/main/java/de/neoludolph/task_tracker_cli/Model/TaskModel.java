@@ -31,15 +31,21 @@ public class TaskModel {
 
     public String toJson() {
         return """
-                {
-                    "id": %d,
-                    "description": "%s",
-                    "createdAt": "%s",
-                    "updatedAt": "%s",
-                    "status": "%s"
-                }
+                    {
+                        "id": %d,
+                        "description": "%s",
+                        "createdAt": "%s",
+                        "updatedAt": "%s",
+                        "status": "%s"
+                    }\
                 """.formatted(this.id, this.description, this.createdAt, this.updatedAt, this.status);
     }
+
+//    public String toJson() {
+//        return "\t{\n\t\"id\": "
+//                + this.id
+//                + ""
+//    }
 
     public long getId() {
         return id;

@@ -12,10 +12,11 @@ public class TaskRepository {
         Path path = Path.of("src/main/resources/tasks.json");
         if (Files.notExists(path)) {
             Files.createFile(path);
-            String curlyBrackets = "{\n\n}";
+            String curlyBrackets = "[\n]";
+            // Alternative notation
 //            String curlyBrackets = """
 //                    {
-//                                              Alternative notation
+//
 //                    }
 //                    """;
             Files.writeString(path, curlyBrackets);
@@ -28,18 +29,22 @@ public class TaskRepository {
         String tasksJson = loadTasksJson();
         String newTask = task.toJson();
 
-        if (tasksJson.equals("{\n\n}")) {
+        if (tasksJson.equals("[\n]")) {
             int position = tasksJson.lastIndexOf("}");
-            String json = tasksJson.substring(0, position - 1)
-                    + "\t"
-                    + newTask;
+            String json = tasksJson.substring(0, position)
+                    + newTask
+                    + "\n"
+                    + tasksJson.substring(position);
+            Files.writeString(path, json);
         } else {
             int position = tasksJson.lastIndexOf("}");
             String json = tasksJson.substring(0, position - 1)
                     + ","
                     + "\n"
                     + "\t"
-                    + newTask;
+                    + newTask
+                    + "\n"
+                    + tasksJson.substring(position);
             Files.writeString(path, json);
         }
     }

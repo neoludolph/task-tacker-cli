@@ -5,6 +5,7 @@ import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.regex.Pattern;
 
 public class TaskServiceImpl implements TaskService {
 
@@ -16,9 +17,15 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public void add(String description) {
-        TaskModel taskModel = new TaskModel(description);
         try {
-            taskRepository.saveTasksJson(taskModel);
+            if (taskRepository.loadTasksJson().equals("[\n]")) {
+                TaskModel taskModel = new TaskModel(description);
+                taskModel.setId(0);
+                taskRepository.saveTasksJson(taskModel);
+            } else {
+                String currentJson = taskRepository.loadTasksJson();
+                Pattern pattern = Pattern.compile("\"id\":\\s*(\\d+)");
+            }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

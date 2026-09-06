@@ -62,7 +62,7 @@ public class TaskRepository {
 
     public void saveUpdatedTaskJson(long id, String description) throws IOException {
         Path path = Path.of("src/main/resources/tasks.json");
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
         String currentJson = loadTasksJson();
 
         Pattern patternForId = Pattern.compile("\"id\":\\s*" + id + "\\b");
@@ -77,8 +77,8 @@ public class TaskRepository {
         // Logik, um Description zu manipulieren
         int comma = currentJson.indexOf(",", endOfMatch + 1);
 
-        String searchedDescription = currentJson.substring(endOfMatch + 29, comma); // "text von description"
-        currentJson = currentJson.replace(searchedDescription, description) ;
+        String searchedDescription = currentJson.substring(endOfMatch + 26, comma); // "text von description"
+        currentJson = currentJson.replace(searchedDescription, description + "\"") ;
 
         Files.writeString(path, currentJson);
 

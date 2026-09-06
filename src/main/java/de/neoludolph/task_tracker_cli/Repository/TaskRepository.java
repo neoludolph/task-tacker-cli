@@ -24,9 +24,11 @@ public class TaskRepository {
     public void saveNewTaskJson(TaskModel task) throws IOException {
         Path path = Path.of("src/main/resources/tasks.json");
         String tasksJson = loadTasksJson();
-        String newTask = task.toJson();
 
         if (tasksJson.equals("[\n]")) {
+            task.setId(0);
+            String newTask = task.toJson();
+
             int position = tasksJson.lastIndexOf("]");
             String json = tasksJson.substring(0, position)
                     + newTask
@@ -34,6 +36,19 @@ public class TaskRepository {
                     + tasksJson.substring(position);
             Files.writeString(path, json);
         } else {
+            String currentJson = loadTasksJson();
+            Pattern pattern = Pattern.compile("\"id\":\\s*(\\d+)");
+            Matcher matcher = pattern.matcher(currentJson);
+
+            int lastId = 0;
+
+            while (matcher.find()) {
+                lastId = Integer.parseInt(matcher.group(1));
+            }
+            task.setId(lastId + 1);
+
+            String newTask = task.toJson();
+
             int position = tasksJson.lastIndexOf("]");
             String json = tasksJson.substring(0, position - 1)
                     + ","

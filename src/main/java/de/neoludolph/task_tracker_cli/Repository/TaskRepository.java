@@ -64,20 +64,32 @@ public class TaskRepository {
         Path path = Path.of("src/main/resources/tasks.json");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
         String currentJson = loadTasksJson();
-        Pattern pattern = Pattern.compile("\"id\":\\s*" + id + "\\b");
-        Matcher matcher = pattern.matcher(currentJson);
+
+        Pattern patternForId = Pattern.compile("\"id\":\\s*" + id + "\\b");
+        Matcher matcherForId = patternForId.matcher(currentJson);
 
         int endOfMatch = 0;
 
-        while (matcher.find()) {
-            endOfMatch = matcher.end();
+        while (matcherForId.find()) {
+            endOfMatch = matcherForId.end(); // das Komma bei "id": id,
         }
-        String newJson = currentJson.substring(0, endOfMatch - 1)
+
+        // Logik, um Description zu manipulieren
+        int comma = currentJson.indexOf(",", endOfMatch + 1);
+
+        String searchedDescription = currentJson.substring(endOfMatch + 29, comma); // "text von description"
+        currentJson = currentJson.replace(searchedDescription, description) ;
+
+        Files.writeString(path, currentJson);
+
+        String addUpdatedAtToJson = currentJson.substring(0, endOfMatch + 1)
                 + "\n"
-                + "\t"
-                + "updatedAt: "
+                + "\t\t"
+                + "\"updatedAt\": "
+                + "\""
                 + LocalDateTime.now().format(formatter)
+                + "\""
                 + currentJson.substring(endOfMatch);
-        Files.writeString(path, newJson);
+        Files.writeString(path, addUpdatedAtToJson);
     }
 }

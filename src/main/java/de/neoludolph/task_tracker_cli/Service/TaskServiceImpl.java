@@ -22,7 +22,7 @@ public class TaskServiceImpl implements TaskService {
         try {
             if (taskRepository.loadTasksJson().equals("[\n]")) {
                 taskModel.setId(0);
-                taskRepository.saveTasksJson(taskModel);
+                taskRepository.saveNewTaskJson(taskModel);
             } else {
                 String currentJson = taskRepository.loadTasksJson();
                 Pattern pattern = Pattern.compile("\"id\":\\s*(\\d+)"); // \\s* -> null oder mehr Whitespaces, () -> Capturing Group, um alles darin gezielt auszulesen, \\d+ -> Mindestens eine Ziffer von 0-9
@@ -34,7 +34,7 @@ public class TaskServiceImpl implements TaskService {
                     lastId = Integer.parseInt(matcher.group(1));
                 }
                 taskModel.setId(lastId + 1);
-                taskRepository.saveTasksJson(taskModel);
+                taskRepository.saveNewTaskJson(taskModel);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -42,8 +42,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void update(TaskModel task, long id, String description) {
-
+    public void update(long id, String description) {
+        try {
+            taskRepository.saveUpdatedTaskJson(id, description);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override

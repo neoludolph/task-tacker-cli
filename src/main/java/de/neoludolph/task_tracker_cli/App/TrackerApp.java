@@ -12,6 +12,9 @@ public class TrackerApp {
             case "add":
                 taskService.add(args[1]);
                 break;
+            case "update":
+                taskService.update(Long.parseLong(args[1]), args[2]);
+                break;
         }
     }
 }

@@ -16,14 +16,13 @@ public class TaskModel {
     private String description;
     @JsonFormat(pattern = "dd.MM.yy")
     private LocalDateTime createdAt;
-    @JsonFormat(pattern = "dd.MM.yy")
-    private LocalDateTime updatedAt;
+//    @JsonFormat(pattern = "dd.MM.yy")
+//    private LocalDateTime updatedAt;
     private Status status;
 
     public TaskModel(String description) {
         this.description = description;
         this.createdAt = LocalDateTime.now();
-        this.updatedAt = LocalDateTime.now();
         this.status = Status.TODO;
     }
 
@@ -33,10 +32,9 @@ public class TaskModel {
                         "id": %d,
                         "description": "%s",
                         "createdAt": "%s",
-                        "updatedAt": "%s",
                         "status": "%s"
                     }\
-                """.formatted(this.id, this.description, this.createdAt, this.updatedAt, this.status);
+                """.formatted(this.id, this.description, this.createdAt, this.status);
     }
 
     public long getId() {
@@ -69,13 +67,5 @@ public class TaskModel {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public LocalDateTime getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(LocalDateTime updatedAt) {
-        this.updatedAt = updatedAt;
     }
 }

@@ -5,6 +5,10 @@ import de.neoludolph.task_tracker_cli.Model.TaskModel;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TaskRepository {
     public String loadTasksJson() throws IOException {
@@ -17,7 +21,7 @@ public class TaskRepository {
         return Files.readString(path);
     }
 
-    public void saveTasksJson(TaskModel task) throws IOException {
+    public void saveNewTaskJson(TaskModel task) throws IOException {
         Path path = Path.of("src/main/resources/tasks.json");
         String tasksJson = loadTasksJson();
         String newTask = task.toJson();
@@ -39,5 +43,26 @@ public class TaskRepository {
                     + tasksJson.substring(position);
             Files.writeString(path, json);
         }
+    }
+
+    public void saveUpdatedTaskJson(long id, String description) throws IOException {
+        Path path = Path.of("src/main/resources/tasks.json");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        String currentJson = loadTasksJson();
+        Pattern pattern = Pattern.compile("\"id\":\\s*" + id + "\\b");
+        Matcher matcher = pattern.matcher(currentJson);
+
+        int endOfMatch = 0;
+
+        while (matcher.find()) {
+            endOfMatch = matcher.end();
+        }
+        String newJson = currentJson.substring(0, endOfMatch - 1)
+                + "\n"
+                + "\t"
+                + "updatedAt: "
+                + LocalDateTime.now().format(formatter)
+                + currentJson.substring(endOfMatch);
+        Files.writeString(path, newJson);
     }
 }

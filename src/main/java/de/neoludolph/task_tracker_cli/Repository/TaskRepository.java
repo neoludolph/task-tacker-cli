@@ -74,12 +74,10 @@ public class TaskRepository {
             endOfMatch = matcherForId.end(); // das Komma bei "id": id,
         }
 
-        // Logik, um Description zu manipulieren
         int comma = currentJson.indexOf(",", endOfMatch + 1);
 
         String searchedDescription = currentJson.substring(endOfMatch + 26, comma); // "text von description"
-        currentJson = currentJson.replace(searchedDescription, description + "\"") ;
-
+        currentJson = currentJson.replace(searchedDescription, description + "\"");
         Files.writeString(path, currentJson);
 
         String addUpdatedAtToJson = currentJson.substring(0, endOfMatch + 1)

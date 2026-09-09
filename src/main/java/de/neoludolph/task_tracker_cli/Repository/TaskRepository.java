@@ -21,7 +21,7 @@ public class TaskRepository {
         return Files.readString(path);
     }
 
-    public void saveNewTaskJson(TaskModel task) throws IOException {
+    public void saveNewTaskInJson(TaskModel task) throws IOException {
         Path path = Path.of("src/main/resources/tasks.json");
         String tasksJson = loadTasksJson();
 

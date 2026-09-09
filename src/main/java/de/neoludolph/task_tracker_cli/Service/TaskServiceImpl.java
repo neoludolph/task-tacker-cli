@@ -19,7 +19,7 @@ public class TaskServiceImpl implements TaskService {
     @Override
     public void add(String description) {
         try {
-            taskRepository.saveNewTaskJson(new TaskModel(description));
+            taskRepository.saveNewTaskInJson(new TaskModel(description));
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

@@ -6,7 +6,7 @@ import java.util.concurrent.atomic.AtomicLong;
 
 public class TaskModel {
 
-    private enum Status {
+    public enum Status {
         DONE,
         TODO,
         IN_PROGRESS

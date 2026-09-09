@@ -16,8 +16,6 @@ public class TaskModel {
     private String description;
     @JsonFormat(pattern = "dd.MM.yy")
     private LocalDateTime createdAt;
-//    @JsonFormat(pattern = "dd.MM.yy")
-//    private LocalDateTime updatedAt;
     private Status status;
 
     public TaskModel(String description) {

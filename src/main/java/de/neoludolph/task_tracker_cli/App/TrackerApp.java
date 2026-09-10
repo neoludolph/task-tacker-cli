@@ -1,12 +1,12 @@
 package de.neoludolph.task_tracker_cli.App;
 
-import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
+import de.neoludolph.task_tracker_cli.Repository.TaskRepositoryImpl;
 import de.neoludolph.task_tracker_cli.Service.TaskServiceImpl;
 
 public class TrackerApp {
 
     public static void startApp(String[] args) {
-        TaskServiceImpl taskService = new TaskServiceImpl(new TaskRepository());
+        TaskServiceImpl taskService = new TaskServiceImpl(new TaskRepositoryImpl());
 
         switch (args[0]) {
             case "add":

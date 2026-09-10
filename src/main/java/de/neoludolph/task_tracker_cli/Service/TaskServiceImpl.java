@@ -1,18 +1,15 @@
 package de.neoludolph.task_tracker_cli.Service;
 
 import de.neoludolph.task_tracker_cli.Model.TaskModel;
-import de.neoludolph.task_tracker_cli.Repository.TaskRepository;
+import de.neoludolph.task_tracker_cli.Repository.TaskRepositoryImpl;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TaskServiceImpl implements TaskService {
 
-    private final TaskRepository taskRepository;
+    private final TaskRepositoryImpl taskRepository;
 
-    public TaskServiceImpl(TaskRepository taskRepository) {
+    public TaskServiceImpl(TaskRepositoryImpl taskRepository) {
         this.taskRepository = taskRepository;
     }
 

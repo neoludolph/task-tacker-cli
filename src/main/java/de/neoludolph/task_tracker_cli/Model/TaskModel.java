@@ -13,6 +13,7 @@ public class TaskModel {
     private long id;
     private String description;
     private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
     private Status status;
 
     public TaskModel() {}
@@ -53,5 +54,13 @@ public class TaskModel {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public LocalDateTime getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(LocalDateTime updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

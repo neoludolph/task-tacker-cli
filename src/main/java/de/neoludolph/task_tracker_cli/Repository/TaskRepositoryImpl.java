@@ -7,7 +7,9 @@ import de.neoludolph.task_tracker_cli.Model.TaskModel;
 
 import java.io.IOException;
 import java.nio.file.Files;
+import java.nio.file.NoSuchFileException;
 import java.nio.file.Path;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class TaskRepositoryImpl implements TaskRepository {
@@ -51,6 +53,30 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public void saveUpdatedTaskJson(long id, String description) throws IOException {
+        Path path = Path.of("src/main/resources/tasks.json");
+        ObjectMapper objectMapper = new ObjectMapper().findAndRegisterModules();
+        objectMapper.configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false);
 
+        ArrayList<TaskModel> al = objectMapper.readValue(
+                path.toFile(),
+                new TypeReference<ArrayList<TaskModel>>() {}
+        );
+
+        try {
+            for (int i = 0; i < al.size(); i++) {
+                TaskModel currentTaskModel = al.get(i);
+                if (currentTaskModel.getId() == id) {
+                    currentTaskModel.setUpdatedAt(LocalDateTime.now());
+                    currentTaskModel.setDescription(description);
+                }
+            }
+            objectMapper
+                    .writerWithDefaultPrettyPrinter()
+                    .writeValue(path.toFile(), al);
+        } catch (NoSuchFileException e) {
+            System.out.println("You have to create a task first!");
+        } catch (IOException e) {
+            throw new RuntimeException();
+        }
     }
 }

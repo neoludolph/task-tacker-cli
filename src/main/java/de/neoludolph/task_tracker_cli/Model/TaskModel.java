@@ -13,25 +13,15 @@ public class TaskModel {
 
     private long id;
     private String description;
-    @JsonFormat(pattern = "dd.MM.yy")
     private LocalDateTime createdAt;
     private Status status;
+
+    public TaskModel() {}
 
     public TaskModel(String description) {
         this.description = description;
         this.createdAt = LocalDateTime.now();
         this.status = Status.TODO;
-    }
-
-    public String toJson() {
-        return """
-                    {
-                        "id": %d,
-                        "description": "%s",
-                        "createdAt": "%s",
-                        "status": "%s"
-                    }\
-                """.formatted(this.id, this.description, this.createdAt, this.status);
     }
 
     public long getId() {

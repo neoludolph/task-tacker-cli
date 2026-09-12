@@ -1,7 +1,5 @@
 package de.neoludolph.task_tracker_cli.Service;
 
-import de.neoludolph.task_tracker_cli.Model.TaskModel;
-
 public interface TaskService {
     void add(String description);
     void update(long id, String description);

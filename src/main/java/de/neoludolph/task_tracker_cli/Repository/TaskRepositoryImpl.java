@@ -43,8 +43,6 @@ public class TaskRepositoryImpl implements TaskRepository {
             task.setId(lastTask.getId() + 1);
             al.add(task);
 
-
-
             objectMapper
                 .writerWithDefaultPrettyPrinter()
                 .writeValue(path.toFile(), al);
@@ -53,33 +51,6 @@ public class TaskRepositoryImpl implements TaskRepository {
 
     @Override
     public void saveUpdatedTaskJson(long id, String description) throws IOException {
-//        Path path = Path.of("src/main/resources/tasks.json");
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
-//        String currentJson = loadTasksJson();
-//
-//        Pattern patternForId = Pattern.compile("\"id\":\\s*" + id + "\\b");
-//        Matcher matcherForId = patternForId.matcher(currentJson);
-//
-//        int endOfMatch = 0;
-//
-//        while (matcherForId.find()) {
-//            endOfMatch = matcherForId.end(); // das Komma bei "id": id,
-//        }
-//
-//        int comma = currentJson.indexOf(",", endOfMatch + 1);
-//
-//        String searchedDescription = currentJson.substring(endOfMatch + 26, comma); // "text von description"
-//        currentJson = currentJson.replace(searchedDescription, description + "\"");
-//        Files.writeString(path, currentJson);
-//
-//        String addUpdatedAtToJson = currentJson.substring(0, endOfMatch + 1)
-//                + "\n"
-//                + "\t\t"
-//                + "\"updatedAt\": "
-//                + "\""
-//                + LocalDateTime.now().format(formatter)
-//                + "\""
-//                + currentJson.substring(endOfMatch);
-//        Files.writeString(path, addUpdatedAtToJson);
+
     }
 }
